@@ -9,7 +9,9 @@ namespace TheStoryWindows.Commands.Abstracts
     {
         private static Dictionary<CommandIdentifier, CommandBase> _implementations = new Dictionary<CommandIdentifier, CommandBase> {
             { CommandIdentifier.help, new HelpCommand() },
-            { CommandIdentifier.email, new EmailCommand() }
+            { CommandIdentifier.email, new EmailCommand() },
+            { CommandIdentifier.connect, new ConnectCommand() },
+            { CommandIdentifier.shutdown, new ShutdownCommand() }
         };
         public abstract CommandIdentifier Identifier { get; }
         public abstract string Description { get; }

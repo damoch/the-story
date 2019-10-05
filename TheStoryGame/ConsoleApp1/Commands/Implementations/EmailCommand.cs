@@ -60,6 +60,7 @@ namespace TheStoryWindows.Commands.Implementations
                 Console.WriteLine("Sender: {0}", item.Sender);
                 Console.WriteLine("Date: {0}", item.ReceivedDate);
                 Console.WriteLine("Subject: {0}", item.Subject);
+                Console.WriteLine("");
             }
         }
 

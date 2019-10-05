@@ -29,7 +29,7 @@ I'm sory, that I have not been in touch, like I promised. But I have a killer st
 I cannot provide you with details right now... Because somebody might be watching. I will have to destroy the computer.
 Oh God, they will find out, but you might be able to get grasp of what is happening here now just in time
 The public must know the truth. 
-You are starting with nothing, but just you wait. You will wish to not go down this rabbit hole
+You are starting with nothing, but just you wait. You will wish not to go down this rabbit hole
 But if you want to go there, connect to 16.151.26.247, and use login zbigniewadamczyk and password ErNrS5. Write them down. On a paper. Then query database with 'Palanice'
 You remember the polish dictionary I have gave you? You might find it handy now. Or some translation software. Unless you know polish, of course.
 Just keep in mind, that secure databeses might be able to detect if you are sniffing to hard. They certainly do not expect somebody from UK to access their databes, so 
@@ -40,6 +40,16 @@ Good luck.
 
 
 Joanna."
+                },
+                new Email()
+                {
+                    ReceivedDate = new DateTime(1994, 06, 25, 12, 3, 11),
+                    Subject = "RE: Super Metroid",
+                    Sender = "EthanNixon@dayrep.com",
+                    Content = @"Yeah, sure dude.
+===PREVIOUS MESSAGE===
+Hi Ethan! 
+I've been thinking, Could you share with me your copy of Super Metroid? I've just bought Super Nintendo, and I've heard, that the new Metroid totally rocks!"
                 }
             };
         }

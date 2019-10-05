@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Threading;
+using TheStoryWindows;
 using TheStoryWindows.Commands.Abstracts;
+using TheStoryWindows.Commands.Enums;
+using TheStoryWindows.Commands.Implementations;
 
 namespace ConsoleApp1
 {
     class Program
     {
+        private static GameController _gameController;
         static void Main(string[] args)
         {
+            SetupGame();
 #if !DEBUG
             SimulateOSStart();
 #endif
@@ -15,6 +20,11 @@ namespace ConsoleApp1
             {
                 DecodeCommand(CommandPrompt());
             }
+        }
+
+        private static void SetupGame()
+        {
+            _gameController = new GameController((EmailCommand)CommandBase.GetByIdentifier(CommandIdentifier.email.ToString()));
         }
 
         private static void DecodeCommand(string command)
@@ -66,7 +76,7 @@ namespace ConsoleApp1
 
         private static string CommandPrompt()
         {
-            Console.Write(">>>");
+            Console.Write(">>> ");
             return Console.ReadLine();
         }
     }

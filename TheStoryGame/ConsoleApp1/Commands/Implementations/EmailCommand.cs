@@ -48,7 +48,7 @@ namespace TheStoryWindows.Commands.Implementations
 
         private void ListEmails()
         {
-            var unreadMessages = EmailList.Where(x => x.IsRead).ToList();
+            var unreadMessages = EmailList.Where(x => !x.IsRead).ToList();
             if (unreadMessages.Count == 0)
             {
                 Console.WriteLine("No new messages");
@@ -65,15 +65,18 @@ namespace TheStoryWindows.Commands.Implementations
 
         private void ReadFirstEmails()
         {
-            var unreadMessages = EmailList.Where(x => x.IsRead).ToList();
-            if (unreadMessages.Count == 0)
+            var unreadMessage = EmailList.FirstOrDefault(x => !x.IsRead);
+            if (unreadMessage == null)
             {
                 Console.WriteLine("No messages to read");
                 return;
             }
+            unreadMessage.IsRead = true;
 
-
-
+            Console.WriteLine("Sender: {0}", unreadMessage.Sender);
+            Console.WriteLine("Date: {0}", unreadMessage.ReceivedDate);
+            Console.WriteLine("Subject: {0}", unreadMessage.Subject);
+            Console.WriteLine(unreadMessage);
         }
     }
 
@@ -88,6 +91,12 @@ namespace TheStoryWindows.Commands.Implementations
         public string Subject { get; set; }
         public DateTime ReceivedDate { get; set; }
         public bool IsRead { get; set; }
+        public string Content { get; set; }
+
+        public override string ToString()
+        {
+            return Content;
+        }
 
     }
 }

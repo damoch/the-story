@@ -7,8 +7,11 @@ namespace TheStoryWindows.Commands.Abstracts
 {
     internal abstract class CommandBase
     {
-        private static Dictionary<CommandIdentifier, CommandBase> _implementations = new Dictionary<CommandIdentifier, CommandBase> { { CommandIdentifier.help, new HelpCommand() } };
-        public abstract CommandIdentifier Idetifier { get; }
+        private static Dictionary<CommandIdentifier, CommandBase> _implementations = new Dictionary<CommandIdentifier, CommandBase> {
+            { CommandIdentifier.help, new HelpCommand() },
+            { CommandIdentifier.email, new EmailCommand() }
+        };
+        public abstract CommandIdentifier Identifier { get; }
         public abstract string Description { get; }
 
         public abstract void Execute(string param = null);

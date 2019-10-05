@@ -6,7 +6,7 @@ namespace TheStoryWindows.Commands.Implementations
 {
     internal class HelpCommand : CommandBase
     {
-        public override CommandIdentifier Idetifier => CommandIdentifier.help;
+        public override CommandIdentifier Identifier => CommandIdentifier.help;
 
         public override string Description => "Provides info about command. Usage: 'help commandName'";
 

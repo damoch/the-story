@@ -37,7 +37,7 @@ namespace ConsoleApp1
         private static void SimulateOSStart()
         {
             var rnd = new Random();
-            Console.Write("Booting GuardianOS 2.5");
+            Console.Write("Booting GuardianOS 93 by GuardSoft");
             for (int i = 0; i < rnd.Next(2, 8); i++)
             {
                 Thread.Sleep(1000);

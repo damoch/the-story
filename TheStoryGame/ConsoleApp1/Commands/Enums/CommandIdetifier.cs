@@ -1,6 +1,6 @@
 ﻿namespace TheStoryWindows.Commands.Enums
 {
-    internal enum CommandIdetifier
+    internal enum CommandIdentifier
     {
         help
     }

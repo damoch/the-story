@@ -6,14 +6,28 @@ namespace TheStoryWindows.Commands.Implementations
 {
     internal class HelpCommand : CommandBase
     {
-        public override CommandIdetifier Idetifier => CommandIdetifier.help;
+        public override CommandIdentifier Idetifier => CommandIdentifier.help;
+
+        public override string Description => "Provides info about command. Usage: 'help commandName'";
 
         public override void Execute(string param = null)
         {
-            foreach (var item in Enum.GetValues(typeof(CommandIdetifier)))
+            if(param == null)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(Description);
+
+                foreach (var item in Enum.GetValues(typeof(CommandIdentifier)))
+                {
+                    Console.WriteLine(item);
+                }
+                return;
             }
+            var cmd = GetByIdentifier(param);
+            if(cmd == null)
+            {
+                Console.WriteLine("Unknown command {0},", param);
+            }
+            Console.WriteLine(cmd.Description);
         }
     }
 }

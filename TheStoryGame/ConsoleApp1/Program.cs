@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using TheStoryWindows.Commands.Abstracts;
-using TheStoryWindows.Commands.Enums;
 
 namespace ConsoleApp1
 {
@@ -9,7 +8,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+#if !DEBUG
             SimulateOSStart();
+#endif
             while (true)
             {
                 DecodeCommand(CommandPrompt());
@@ -23,9 +24,9 @@ namespace ConsoleApp1
 
             try
             {
-                var enumVal = (CommandIdetifier)Enum.Parse(typeof(CommandIdetifier), commName);
-                var cmd = CommandBase.GetByIdentifier(enumVal);
-                cmd.Execute();
+                var cmd = CommandBase.GetByIdentifier(commName);
+                var param = commTab.Length > 1 ? commTab[1] : null;
+                cmd.Execute(param);
             }
             catch
             {

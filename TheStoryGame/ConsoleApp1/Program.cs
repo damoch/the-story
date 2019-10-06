@@ -10,6 +10,9 @@ namespace ConsoleApp1
     class Program
     {
         private static GameController _gameController;
+
+        public static GameController GameController { get => _gameController; };
+
         static void Main(string[] args)
         {
             SetupGame();
@@ -24,7 +27,7 @@ namespace ConsoleApp1
 
         private static void SetupGame()
         {
-            _gameController = new GameController((EmailCommand)CommandBase.GetByIdentifier(CommandIdentifier.email.ToString()));
+            GameController = new GameController((EmailCommand)CommandBase.GetByIdentifier(CommandIdentifier.email.ToString()));
         }
 
         private static void DecodeCommand(string command)

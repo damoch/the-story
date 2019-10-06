@@ -8,9 +8,20 @@ namespace TheStoryWindows
     public class GameController
     {
         internal EmailCommand EmailService { get; set; }
+        public int SpookyMeter { get => spookyMeter;
+            set {
+                if(spookyMeter + value > _maxSpooky)
+                {
+                    return;
+                }
+                spookyMeter = value;
+            }
+        }
+        private readonly int _maxSpooky = 100;
+        private int spookyMeter;
 
         internal GameController(EmailCommand emailService)
-        {            
+        {
             SetupEmailService(emailService);
         }
 
@@ -39,7 +50,8 @@ I have to end. They know that I want to blow whistle on them. It's all on your h
 Good luck.
 
 
-Joanna."
+Joanna.",
+                    SpookyAdd = 5
                 },
                 new Email()
                 {
@@ -52,6 +64,20 @@ Hi Ethan!
 I've been thinking, Could you share with me your copy of Super Metroid? I've just bought Super Nintendo, and I've heard, that the new Metroid totally rocks!"
                 }
             };
+        }
+
+        internal void AddEmail(Email email)
+        {
+            EmailService.EmailList.Add(email);
+        }
+
+        public void DoSpookyThing()
+        {
+            var rnd = new Random();
+            if(spookyMeter > rnd.Next(0, _maxSpooky))
+            {
+
+            }
         }
     }
 }

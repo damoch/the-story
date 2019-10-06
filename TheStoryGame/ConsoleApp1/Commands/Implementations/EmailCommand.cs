@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TheStoryWindows.Commands.Abstracts;
@@ -73,7 +74,10 @@ namespace TheStoryWindows.Commands.Implementations
                 return;
             }
             unreadMessage.IsRead = true;
-
+            if(unreadMessage.SpookyAdd > 0)
+            {
+                Program.GameController.SpookyMeter += unreadMessage.SpookyAdd;
+            }
             Console.WriteLine("Sender: {0}", unreadMessage.Sender);
             Console.WriteLine("Date: {0}", unreadMessage.ReceivedDate);
             Console.WriteLine("Subject: {0}", unreadMessage.Subject);
@@ -98,6 +102,8 @@ namespace TheStoryWindows.Commands.Implementations
         {
             return Content;
         }
+
+        public int SpookyAdd { get; set; }
 
     }
 }

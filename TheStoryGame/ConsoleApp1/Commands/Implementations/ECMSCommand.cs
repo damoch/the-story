@@ -17,7 +17,7 @@ namespace TheStoryWindows.Commands.Implementations
         public override void Execute(string param = null)
         {
             Console.WriteLine("Starting ECMS");
-            Process.Start("https://damoch.itch.io/evil-cult-managment-system");
+            Process.Start("microsoft-edge:https://damoch.itch.io/evil-cult-managment-system");
             Thread.Sleep(5000);
         }
     }

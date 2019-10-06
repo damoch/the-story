@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using TheStoryWindows.Commands.Implementations;
 
 namespace TheStoryWindows
@@ -19,10 +20,66 @@ namespace TheStoryWindows
         }
         private readonly int _maxSpooky = 100;
         private int spookyMeter;
+        private List<Action> _spookyThings;
+        private List<string> _spookyTexts = new List<string>()
+        {
+            "No one will help you", "Humans are insects. We are superior", "Your time is coming", "Give up, you fucking insect, you will not stop what is inevitable",
+            "After we claim your tiny planet, you will serve us well", "DIE DIE DIE", "You are dealing with things, that are beyond your ability to comprehend them",
+            "You are asking for a fucking problem, you know?", "We know who you fucking are, Zahary. Do you know who are you dealing with?", "Look at you - tiny insect looking with terror to his screen. What are you, compared to us?",
+            "You don't comprehend Us", "Give up. Last fucking chance", "Humans are such ease prey"
+        };
+
+        private void SpookyText()
+        {
+            Thread.Sleep(4000);
+            Console.Clear();
+            Thread.Sleep(1000);
+            foreach (var item in RandomSpookyText())
+            {
+                Console.Write(item);
+                Thread.Sleep(300);
+            }
+            Thread.Sleep(1000);
+            Console.Clear();
+            Thread.Sleep(4000);
+
+        }
+
+        private void SpookyColorChange()
+        {
+            if(Console.BackgroundColor == ConsoleColor.Red)
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine("Black. Like the fate awaiting you, insect");
+
+                return;
+            }
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine("Red. Just like blood. Sea of blood, that must be spilled to clean sins of those who seek");
+        }
+
+        private string RandomSpookyText()
+        {
+
+            var rnd = new Random();
+            return _spookyTexts[rnd.Next(0, _spookyTexts.Count - 1)];
+        }
+
+        private void SetSpookyTitle()
+        {
+            Console.Title = RandomSpookyText();
+        }
 
         internal GameController(EmailCommand emailService)
         {
             SetupEmailService(emailService);
+            _spookyThings = new List<Action>
+            {
+                SpookyText,
+                SpookyColorChange,
+                SetSpookyTitle,
+                SendSpookyEmail
+            };
         }
 
         private void SetupEmailService(EmailCommand emailService)
@@ -69,15 +126,29 @@ I've been thinking, Could you share with me your copy of Super Metroid? I've jus
         internal void AddEmail(Email email)
         {
             EmailService.EmailList.Add(email);
+            Console.WriteLine("email: there are new messages");
         }
+
 
         public void DoSpookyThing()
         {
             var rnd = new Random();
-            if(spookyMeter > rnd.Next(0, _maxSpooky))
+            if (spookyMeter > rnd.Next(0, _maxSpooky))
             {
-
+                _spookyThings[rnd.Next(0, _spookyThings.Count-1)].Invoke();
             }
+        }
+
+        private void SendSpookyEmail()
+        {
+            AddEmail(new Email()
+            {
+                Sender = "UNKNOWN",
+                ReceivedDate = new DateTime(1994, 6, 26, 0, 0, 0),
+                Subject = RandomSpookyText(),
+                Content = RandomSpookyText()
+            }) ;
+            
         }
     }
 }

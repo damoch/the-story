@@ -11,7 +11,7 @@ namespace ConsoleApp1
     {
         private static GameController _gameController;
 
-        public static GameController GameController { get => _gameController; };
+        public static GameController GameController { get => _gameController; }
 
         static void Main(string[] args)
         {
@@ -27,11 +27,12 @@ namespace ConsoleApp1
 
         private static void SetupGame()
         {
-            GameController = new GameController((EmailCommand)CommandBase.GetByIdentifier(CommandIdentifier.email.ToString()));
+            _gameController = new GameController((EmailCommand)CommandBase.GetByIdentifier(CommandIdentifier.email.ToString()));
         }
 
         private static void DecodeCommand(string command)
         {
+            _gameController.DoSpookyThing();
             var commTab = command.Split(' ');
             var commName = commTab[0];
 
@@ -75,6 +76,7 @@ namespace ConsoleApp1
             Thread.Sleep(500);
             Console.WriteLine("OK!");
             Console.WriteLine("Type 'help' to get list of commands");
+            Console.WriteLine("email: there are new messages");
         }
 
         private static string CommandPrompt()

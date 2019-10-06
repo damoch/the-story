@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using TheStoryWindows.Commands.Abstracts;
+using TheStoryWindows.Commands.Implementations;
 
 namespace TheStoryWindows.Data
 {
@@ -13,6 +15,10 @@ namespace TheStoryWindows.Data
             {
                 Name = "TestBase",
                 IPAddr = "6.6.6.6",
+                Software = new List<CommandBase>()
+                {
+                    new ECMSCommand()
+                },
                 Users = new List<DataBasePass>()
                 {
                     new DataBasePass()
@@ -33,8 +39,10 @@ Dont worry",
                         Tags = new List<string>()
                         {
                             "test", "testing"
-                        }
+                        },
+
                     }
+
                 }
 
             }

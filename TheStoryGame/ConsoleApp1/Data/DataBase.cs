@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheStoryWindows.Commands.Abstracts;
 
 namespace TheStoryWindows.Data
 {
@@ -12,6 +13,8 @@ namespace TheStoryWindows.Data
         public List<DataBasePass> Users { get; set; }
 
         public List<DataBaseEntry> Entries { get; set; }
+
+        public List<CommandBase> Software { get; set; }
 
         public DataBasePass GetUser(string name)
         {

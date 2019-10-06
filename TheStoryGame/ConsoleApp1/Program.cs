@@ -30,7 +30,7 @@ namespace ConsoleApp1
         private static void DecodeCommand(string command)
         {
             var commTab = command.Split(' ');
-            var commName = commTab[0].ToLower();
+            var commName = commTab[0];
 
             try
             {

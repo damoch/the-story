@@ -11,6 +11,7 @@ namespace TheStoryWindows.Commands.Abstracts
             { CommandIdentifier.help, new HelpCommand() },
             { CommandIdentifier.email, new EmailCommand() },
             { CommandIdentifier.connect, new ConnectCommand() },
+            { CommandIdentifier.installTool, new InstallToolCommand() },
             { CommandIdentifier.shutdown, new ShutdownCommand() }
         };
         public abstract CommandIdentifier Identifier { get; }
@@ -29,6 +30,24 @@ namespace TheStoryWindows.Commands.Abstracts
             catch
             {
                 return null;
+            }
+        }
+
+        public static void AddCommand(CommandBase command)
+        {
+            if (_implementations.ContainsKey(command.Identifier))
+            {
+                return;
+            }
+            _implementations.Add(command.Identifier, command);
+
+        }
+
+        public void WriteAllInstalled()
+        {
+            foreach (var item in _implementations.Keys)
+            {
+                Console.WriteLine(item);
             }
         }
     }

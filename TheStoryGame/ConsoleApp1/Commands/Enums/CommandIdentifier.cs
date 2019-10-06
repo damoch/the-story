@@ -2,6 +2,6 @@
 {
     internal enum CommandIdentifier
     {
-        help, email, connect, shutdown
+        help, email, connect, shutdown, installTool, ecms
     }
 }

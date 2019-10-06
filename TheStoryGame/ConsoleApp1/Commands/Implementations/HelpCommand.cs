@@ -16,10 +16,7 @@ namespace TheStoryWindows.Commands.Implementations
             {
                 Console.WriteLine(Description);
 
-                foreach (var item in Enum.GetValues(typeof(CommandIdentifier)))
-                {
-                    Console.WriteLine(item);
-                }
+                WriteAllInstalled();
                 return;
             }
             var cmd = GetByIdentifier(param);

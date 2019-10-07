@@ -58,7 +58,7 @@ Dont worry",
                     {
                         new DataBaseEntry()
                         {
-                            Tags = new List<string>{"notatki", "palanice",  },
+                            Tags = new List<string>{"notatki", "palenice",  },
                             ReadSpookyAdd = 5,
                             Title = "Szkic artykułu o porwaniach",
                             Content = @"
@@ -77,7 +77,7 @@ hasło: ErNrS5
 login: jkucharska
 hasło: aauBwb
 
-jakby co to możesz wejść na mój prywatny serwer (155.209.69.182) tam mam wywiad dotyczący tej historii o porwaniach (wyszukaj Palanice). Login i hasło takie samo co tutaj",
+jakby co to możesz wejść na mój prywatny serwer (155.209.69.182) tam mam wywiad dotyczący tej historii o porwaniach (wyszukaj palenice). Login i hasło takie samo co tutaj",
                             Date = new DateTime(1994,6,22)
                         },
 
@@ -109,7 +109,7 @@ Możliwe, że na serwerze FreeSoftware (11.213.186.247, login 'guest' bez hasła
 
                          new DataBaseEntry()
                         {
-                            Tags = new List<string>{"praca", "palanice"  },
+                            Tags = new List<string>{"praca", "palenice"  },
                             Title = "Wywiad, dokończyć transkrypcję",
                             Content = @"
 JA: Co pan widział w lesie?
@@ -344,6 +344,14 @@ aW5zdGFsbFRvb2wgNDYuMTM0LjcwLjE4X2Rvbmlz",
 
             },
             #endregion
+                        new DataBase()
+                        {
+                            IPAddr = "46.134.70.18",
+                            Software = new List<CommandBase>()
+                            {
+                                new DonisCommand()
+                            }
+                        }
 
         };
 

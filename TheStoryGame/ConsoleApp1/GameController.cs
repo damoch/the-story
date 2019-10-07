@@ -77,7 +77,7 @@ namespace TheStoryWindows
             }
         }
 
-        private void PlaySpookySound()
+        public void PlaySpookySound()
         {
             var rnd = new Random();
             for (var i = 0; i< rnd.Next(5,9); i++)

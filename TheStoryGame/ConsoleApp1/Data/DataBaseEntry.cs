@@ -9,5 +9,11 @@ namespace TheStoryWindows.Data
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
+
+        public Action OnRead { get; set; }
+
+        public int ReadSpookyAdd { get; set; }
+        public bool IsRead { get; set; }
+
     }
 }

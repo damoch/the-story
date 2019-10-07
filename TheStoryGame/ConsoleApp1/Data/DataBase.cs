@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ConsoleApp1;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,8 +52,16 @@ namespace TheStoryWindows.Data
                     sb.Append(", ");
                 }
                 sb.AppendLine();
+
+                if (!item.IsRead)
+                {
+                    item.IsRead = true;
+                    Program.GameController.SpookyMeter += item.ReadSpookyAdd;
+                    item.OnRead?.Invoke();
+                }
             }
             return sb.ToString();
         }
     }
 }
+

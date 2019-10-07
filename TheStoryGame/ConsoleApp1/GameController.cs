@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using TheStoryWindows.Commands.Abstracts;
 using TheStoryWindows.Commands.Implementations;
 
 namespace TheStoryWindows
@@ -9,7 +10,7 @@ namespace TheStoryWindows
     public class GameController
     {
         internal EmailCommand EmailService { get; set; }
-        public int SpookyMeter { get => spookyMeter;
+        public int SpookyMeter { get => 50;
             set {
                 if(spookyMeter + value > _maxSpooky)
                 {
@@ -39,7 +40,7 @@ namespace TheStoryWindows
                 Console.Write(item);
                 Thread.Sleep(300);
             }
-            Thread.Sleep(1000);
+            PlaySpookySound();
             Console.Clear();
             Thread.Sleep(4000);
 
@@ -47,6 +48,7 @@ namespace TheStoryWindows
 
         private void SpookyColorChange()
         {
+            Console.Beep();
             if(Console.BackgroundColor == ConsoleColor.Red)
             {
                 Console.BackgroundColor = ConsoleColor.Black;
@@ -65,8 +67,18 @@ namespace TheStoryWindows
             return _spookyTexts[rnd.Next(0, _spookyTexts.Count - 1)];
         }
 
+        private void PlaySpookySound()
+        {
+            var rnd = new Random();
+            for (var i = 0; i< rnd.Next(5,9); i++)
+            {
+                Console.Beep(rnd.Next(166, 415), rnd.Next(100, 1600));
+            }
+        }
+
         private void SetSpookyTitle()
         {
+            PlaySpookySound();
             Console.Title = RandomSpookyText();
         }
 
@@ -78,7 +90,8 @@ namespace TheStoryWindows
                 SpookyText,
                 SpookyColorChange,
                 SetSpookyTitle,
-                SendSpookyEmail
+                SendSpookyEmail,
+                PlaySpookySound
             };
         }
 
@@ -108,7 +121,7 @@ Good luck.
 
 
 Joanna.",
-                    SpookyAdd = 5
+                    SpookyAdd = 2
                 },
                 new Email()
                 {
@@ -116,9 +129,32 @@ Joanna.",
                     Subject = "RE: Super Metroid",
                     Sender = "EthanNixon@dayrep.com",
                     Content = @"Yeah, sure dude.
+
+----
+Ethan Nixon
+IT Dept Director at Daily Report
 ===PREVIOUS MESSAGE===
 Hi Ethan! 
-I've been thinking, Could you share with me your copy of Super Metroid? I've just bought Super Nintendo, and I've heard, that the new Metroid totally rocks!"
+I've been thinking, Could you share with me your copy of Super Metroid? I've just bought Super Nintendo, and I've heard, that the new Metroid totally rocks!
+
+-----
+Best Wishes,
+Zahary Bowen
+Senior Reporter at Daily Report"
+                },
+                new Email()
+                {
+                    ReceivedDate = new DateTime(1994, 06, 24, 7, 3, 5),
+                    Subject = "Hey!",
+                    Sender = "eliseOconnor@dayrep.com",
+                    Content = @"Good to have you back! How was your holiday?
+I hope, that you could use that sweet, post holiday energy to deliver some amazing story for the next issue!
+Also, there was woman from Poland, who tried to call you. She said it was reaaly urgent. Yeah, I remembered your 'no phone on holidays' policy, so I gave her your email address.
+
+---
+With regards:
+Elise O'Connor
+Chief Editor at Daily Report"
                 }
             };
         }

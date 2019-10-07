@@ -10,6 +10,8 @@ namespace TheStoryWindows.Commands.Implementations
     {
         private DataBasePass _currentUser;
         private DataBase _currentDataBase;
+        private int _queryLimit;
+
         public override CommandIdentifier Identifier => CommandIdentifier.connect;
 
         public override string Description => "Establishes connection to a web server. Usage: connect ip_address";
@@ -42,11 +44,18 @@ namespace TheStoryWindows.Commands.Implementations
                 _currentUser = null;
                 _currentDataBase = null;
                 Console.WriteLine("Authentication failed!");
+                return;
             }
-
+            if (_currentUser.IsLocked)
+            {
+                _currentUser = null;
+                _currentDataBase = null;
+                Console.WriteLine("This user is locked! Contact database admin for more info");
+                return;
+            }
             Console.WriteLine("Welcome {0}!", _currentUser.Login);
             Console.WriteLine("Please enter your query bellow, or type exit to leave:");
-
+            _queryLimit = rnd.Next(5, 10);
             while (HandleUserQueries()) ;
             _currentDataBase = null;
             _currentUser = null;
@@ -62,6 +71,12 @@ namespace TheStoryWindows.Commands.Implementations
                 return false;
             }
             Console.WriteLine(_currentDataBase.Query(query));
+            if(--_queryLimit == 0)
+            {
+                Console.WriteLine("Security incident detected. Connection terminated by server. Contact server admin for more info");
+                _currentUser.IsLocked = true;
+                return false;
+            }
             return true;
         }
 

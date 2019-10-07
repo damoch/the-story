@@ -81,6 +81,7 @@ namespace ConsoleApp1
 
         private static string CommandPrompt()
         {
+            _gameController.ChceckEmail();
             Console.Write(">>> ");
             return Console.ReadLine();
         }

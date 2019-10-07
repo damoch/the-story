@@ -10,7 +10,7 @@ namespace TheStoryWindows
     public class GameController
     {
         internal EmailCommand EmailService { get; set; }
-        public int SpookyMeter { get => 50;
+        public int SpookyMeter { get => spookyMeter;
             set {
                 if(spookyMeter + value > _maxSpooky)
                 {
@@ -29,6 +29,7 @@ namespace TheStoryWindows
             "You are asking for a fucking problem, you know?", "We know who you fucking are, Zahary. Do you know who are you dealing with?", "Look at you - tiny insect looking with terror to his screen. What are you, compared to us?",
             "You don't comprehend Us", "Give up. Last fucking chance", "Humans are such ease prey"
         };
+        private bool _emailNewMessages;
 
         private void SpookyText()
         {
@@ -65,6 +66,15 @@ namespace TheStoryWindows
 
             var rnd = new Random();
             return _spookyTexts[rnd.Next(0, _spookyTexts.Count - 1)];
+        }
+
+        public void ChceckEmail()
+        {
+            if (_emailNewMessages)
+            {
+                Console.WriteLine("email: there are new messages");
+                _emailNewMessages = false;
+            }
         }
 
         private void PlaySpookySound()
@@ -121,7 +131,7 @@ Good luck.
 
 
 Joanna.",
-                    SpookyAdd = 2
+                    SpookyAdd = 8
                 },
                 new Email()
                 {
@@ -162,7 +172,7 @@ Chief Editor at Daily Report"
         internal void AddEmail(Email email)
         {
             EmailService.EmailList.Add(email);
-            Console.WriteLine("email: there are new messages");
+            _emailNewMessages = true;
         }
 
 

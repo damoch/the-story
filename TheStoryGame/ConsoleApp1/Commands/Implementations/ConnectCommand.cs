@@ -53,7 +53,7 @@ namespace TheStoryWindows.Commands.Implementations
                 Console.WriteLine("This user is locked! Contact database admin for more info");
                 return;
             }
-            Console.WriteLine("Welcome {0}!", _currentUser.Login);
+            Console.WriteLine("Welcome to {1}, {0}!", _currentUser.Login, _currentDataBase.Name);
             Console.WriteLine("Please enter your query bellow, or type exit to leave:");
             _queryLimit = rnd.Next(5, 10);
             while (HandleUserQueries()) ;
